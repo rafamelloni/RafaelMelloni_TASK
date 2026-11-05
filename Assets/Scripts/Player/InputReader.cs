@@ -9,4 +9,6 @@ public class InputReader : MonoBehaviour
 
     public bool IsSprinting => Input.GetKey(KeyCode.LeftShift);
     public bool InventoryTogglePressed => Input.GetKeyDown(KeyCode.Tab);
+    public bool InteractPressed => IsGameplayEnabled && Input.GetKeyDown(KeyCode.E);
+
 }

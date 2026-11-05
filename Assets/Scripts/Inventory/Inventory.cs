@@ -29,7 +29,7 @@ public class Inventory
         if (slot.IsEmpty)
             return;
 
-        if (slot.Item.Data.TryUse(context))
+        if (slot.Item.Data.TryUse(slot.Item, context))
             RemoveFromSlot(index);
     }
 
@@ -132,5 +132,19 @@ public class Inventory
         ItemInstance temp = to.Item;
         to.Set(from.Item);
         from.Set(temp);
+    }
+
+    public ItemInstance TakeFromSlot(int index)
+    {
+        InventorySlot slot = slots[index];
+
+        if (slot.IsEmpty)
+            return null;
+
+        ItemInstance item = slot.Item;
+        slot.Clear();
+        OnChanged?.Invoke();
+
+        return item;
     }
 }

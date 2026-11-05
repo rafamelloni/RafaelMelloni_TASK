@@ -7,7 +7,7 @@ public class InventoryPanelController : MonoBehaviour
     [SerializeField] private InputReader input;
     [SerializeField] private CinemachineInputAxisController cameraInput;
     [SerializeField] private InventoryDragController dragController;
-
+    [SerializeField] private ItemContextMenu contextMenu;
     private bool isOpen;
 
     private void Start()
@@ -23,6 +23,7 @@ public class InventoryPanelController : MonoBehaviour
 
     private void SetOpen(bool open)
     {
+        contextMenu.Close();
         isOpen = open;
         panel.SetActive(open);
 

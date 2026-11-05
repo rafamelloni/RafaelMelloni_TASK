@@ -6,6 +6,7 @@ public class InventoryDebugInput : MonoBehaviour
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private ItemData ammo;
     [SerializeField] private ItemData medkit;
+    [SerializeField] private ItemData pistol;
 
     private void Update()
     {
@@ -23,5 +24,7 @@ public class InventoryDebugInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
             Debug.Log($"Vida: {playerHealth.CurrentHealth}");
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+            inventoryController.Inventory.AddItem(pistol, 1, 12);
     }
 }

@@ -10,13 +10,17 @@ public class ItemData : ScriptableObject
     [SerializeField] private Sprite icon;
     [SerializeField, Min(1)] private int maxStack = 1;
 
+    [SerializeField] private WorldItem worldPrefab;
+
+    public WorldItem WorldPrefab => worldPrefab;
+    public virtual string UseActionName => null;
     public string Id => id;
     public string DisplayName => displayName;
     public string Description => description;
     public Sprite Icon => icon;
     public int MaxStack => maxStack;
 
-    public virtual bool TryUse(ItemUseContext context)
+    public virtual bool TryUse(ItemInstance instance, ItemUseContext context)
     {
         return false;
     }

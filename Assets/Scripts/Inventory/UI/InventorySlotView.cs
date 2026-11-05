@@ -13,13 +13,14 @@ public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private InventoryDragController dragController;
     private ItemDetailsPanel detailsPanel;
     private int slotIndex;
+    private ItemContextMenu contextMenu;
 
-    public void Initialize(int index, InventoryDragController controller, ItemDetailsPanel details, InventoryController inventory)
+    public void Initialize(int index, InventoryDragController controller, ItemDetailsPanel details, ItemContextMenu menu)
     {
         slotIndex = index;
         dragController = controller;
         detailsPanel = details;
-        inventoryController = inventory;
+        contextMenu = menu;
     }
 
     public void Render(InventorySlot slot)
@@ -45,6 +46,7 @@ public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler,
         if (currentSlot == null || currentSlot.IsEmpty)
             return;
 
+        contextMenu.Close();
         SetIconAlpha(0.35f);
         dragController.BeginDrag(slotIndex, currentSlot.Item.Data.Icon, eventData.position);
     }
@@ -96,9 +98,10 @@ public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler,
         if (eventData.button != PointerEventData.InputButton.Right)
             return;
 
-        inventoryController.UseItem(slotIndex);
+        if (currentSlot == null || currentSlot.IsEmpty)
+            return;
 
-        if (currentSlot.IsEmpty)
-            detailsPanel.Clear();
+        detailsPanel.Clear();
+        contextMenu.Show(slotIndex, currentSlot.Item.Data, eventData.position);
     }
 }
