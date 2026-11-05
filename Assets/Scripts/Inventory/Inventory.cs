@@ -61,6 +61,8 @@ public class Inventory
             return;
 
         if (!to.IsEmpty && to.Item.CanStackWith(from.Item))
+
+
             MergeStacks(from, to);
         else
             SwapItems(from, to);
