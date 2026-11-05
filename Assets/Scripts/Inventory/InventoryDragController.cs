@@ -9,6 +9,7 @@ public class InventoryDragController : MonoBehaviour
     [SerializeField] private Image dragIcon;
 
     private int draggedSlotIndex = NoSlot;
+    public bool IsDragging => draggedSlotIndex != NoSlot;
 
     private void Awake()
     {

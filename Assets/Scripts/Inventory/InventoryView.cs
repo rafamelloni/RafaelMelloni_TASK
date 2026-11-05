@@ -6,6 +6,7 @@ public class InventoryView : MonoBehaviour
     [SerializeField] private InventorySlotView slotPrefab;
     [SerializeField] private Transform slotsParent;
     [SerializeField] private InventoryDragController dragController;
+    [SerializeField] private ItemDetailsPanel detailsPanel;
 
     private Inventory inventory;
     private InventorySlotView[] slotViews;
@@ -32,7 +33,7 @@ public class InventoryView : MonoBehaviour
         for (int i = 0; i < slotViews.Length; i++)
         {
             slotViews[i] = Instantiate(slotPrefab, slotsParent);
-            slotViews[i].Initialize(i, dragController);
+            slotViews[i].Initialize(i, dragController, detailsPanel);
         }
     }
 
