@@ -3,22 +3,23 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerEnterHandler,
-    IPointerExitHandler
+public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private Image iconImage;
     [SerializeField] private TMP_Text quantityText;
 
+    private InventoryController inventoryController;
     private InventorySlot currentSlot;
     private InventoryDragController dragController;
     private ItemDetailsPanel detailsPanel;
     private int slotIndex;
 
-    public void Initialize(int index, InventoryDragController controller, ItemDetailsPanel details)
+    public void Initialize(int index, InventoryDragController controller, ItemDetailsPanel details, InventoryController inventory)
     {
         slotIndex = index;
         dragController = controller;
         detailsPanel = details;
+        inventoryController = inventory;
     }
 
     public void Render(InventorySlot slot)
@@ -88,5 +89,16 @@ public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler,
     public void OnPointerExit(PointerEventData eventData)
     {
         detailsPanel.Clear();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Right)
+            return;
+
+        inventoryController.UseItem(slotIndex);
+
+        if (currentSlot.IsEmpty)
+            detailsPanel.Clear();
     }
 }

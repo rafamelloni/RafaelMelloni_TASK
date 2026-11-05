@@ -33,7 +33,7 @@ public class InventoryView : MonoBehaviour
         for (int i = 0; i < slotViews.Length; i++)
         {
             slotViews[i] = Instantiate(slotPrefab, slotsParent);
-            slotViews[i].Initialize(i, dragController, detailsPanel);
+            slotViews[i].Initialize(i, dragController, detailsPanel, inventoryController);
         }
     }
 

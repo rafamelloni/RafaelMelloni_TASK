@@ -22,7 +22,18 @@ public class Inventory
         return slots[index];
     }
 
-    // Devuelve la cantidad que no entró.
+    public void UseItem(int index, ItemUseContext context)
+    {
+        InventorySlot slot = slots[index];
+
+        if (slot.IsEmpty)
+            return;
+
+        if (slot.Item.Data.TryUse(context))
+            RemoveFromSlot(index);
+    }
+
+    
     public int AddItem(ItemData data, int quantity = 1, int loadedAmmo = 0)
     {
         int remaining = FillExistingStacks(data, quantity);

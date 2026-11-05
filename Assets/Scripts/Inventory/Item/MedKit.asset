@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e016b22eaf144784cacb0cee74870ec9, type: 3}
-  m_Name: Med Kit
-  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  m_Script: {fileID: 11500000, guid: 977e7c6bf7e4a1542b31b8db76d8efdd, type: 3}
+  m_Name: MedKit
+  m_EditorClassIdentifier: Assembly-CSharp::ConsumableData
   id: 
-  displayName: Med Kit
-  description: 'Use for Health Regeneration
-
-'
-  icon: {fileID: 0}
+  displayName: MedKit
+  description: 
+  icon: {fileID: 21300000, guid: 96abe9144609545419e18f668c98e5b3, type: 3}
   maxStack: 1
+  healAmount: 25

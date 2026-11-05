@@ -15,4 +15,9 @@ public class ItemData : ScriptableObject
     public string Description => description;
     public Sprite Icon => icon;
     public int MaxStack => maxStack;
+
+    public virtual bool TryUse(ItemUseContext context)
+    {
+        return false;
+    }
 }
