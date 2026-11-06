@@ -14,7 +14,11 @@ public class PlayerHealth : MonoBehaviour
     {
         CurrentHealth = maxHealth;
     }
-
+    public void SetHealth(int value)
+    {
+        CurrentHealth = Mathf.Clamp(value, 0, maxHealth);
+        OnChanged?.Invoke();
+    }
     public void Heal(int amount)
     {
         CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);

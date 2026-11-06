@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977e7c6bf7e4a1542b31b8db76d8efdd, type: 3}
   m_Name: MedKit
   m_EditorClassIdentifier: Assembly-CSharp::ConsumableData
-  id: 
+  id: medkit
   displayName: MedKit
   description: 
   icon: {fileID: 21300000, guid: 96abe9144609545419e18f668c98e5b3, type: 3}

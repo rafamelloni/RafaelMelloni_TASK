@@ -6,7 +6,9 @@ public class WorldItem : MonoBehaviour, IInteractable
     [SerializeField, Min(1)] private int quantity = 1;
     [SerializeField, Min(0)] private int loadedAmmo;
 
-    public string PromptText => $"E: Levantar {item.DisplayName}";
+    public ItemData Item => item;
+    public int Quantity => quantity;
+    public int LoadedAmmo => loadedAmmo;
 
     public void Initialize(ItemData newItem, int newQuantity, int newLoadedAmmo)
     {
@@ -20,8 +22,14 @@ public class WorldItem : MonoBehaviour, IInteractable
         int remaining = interactor.Inventory.AddItem(item, quantity, loadedAmmo);
 
         if (remaining == 0)
-            Destroy(gameObject);
+            Remove();
         else
             quantity = remaining;
+    }
+
+    public void Remove()
+    {
+        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

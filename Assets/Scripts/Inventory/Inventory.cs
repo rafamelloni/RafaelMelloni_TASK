@@ -1,6 +1,6 @@
 using UnityEngine;
 using System;
-
+using System.Collections.Generic;
 public class Inventory 
 {
     private readonly InventorySlot[] slots;
@@ -146,5 +146,61 @@ public class Inventory
         OnChanged?.Invoke();
 
         return item;
+    }
+
+    public List<SavedSlot> CreateSaveData()
+    {
+        List<SavedSlot> savedSlots = new List<SavedSlot>();
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].IsEmpty)
+                continue;
+
+            ItemInstance item = slots[i].Item;
+
+            savedSlots.Add(new SavedSlot
+            {
+                slotIndex = i,
+                itemId = item.Data.Id,
+                quantity = item.Quantity,
+                loadedAmmo = item.LoadedAmmo
+            });
+        }
+
+        return savedSlots;
+    }
+
+    public void LoadSaveData(List<SavedSlot> savedSlots, ItemDataBase database)
+    {
+        foreach (InventorySlot slot in slots)
+            slot.Clear();
+
+        foreach (SavedSlot savedSlot in savedSlots)
+        {
+            if (savedSlot.slotIndex < 0 || savedSlot.slotIndex >= slots.Length)
+                continue;
+
+            ItemData data = database.GetById(savedSlot.itemId);
+
+            if (data == null)
+                continue;
+
+            slots[savedSlot.slotIndex].Set(
+                new ItemInstance(data, savedSlot.quantity, savedSlot.loadedAmmo));
+        }
+
+        OnChanged?.Invoke();
+    }
+
+    public int FindSlotIndex(ItemInstance item)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].Item == item)
+                return i;
+        }
+
+        return -1;
     }
 }

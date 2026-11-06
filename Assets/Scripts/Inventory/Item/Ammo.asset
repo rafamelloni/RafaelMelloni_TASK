@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e016b22eaf144784cacb0cee74870ec9, type: 3}
   m_Name: Ammo
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  id: 
+  id: ammo
   displayName: Pistol Ammo
   description: Ammo for Pistol
   icon: {fileID: 21300000, guid: 40250185cfcd2604ebc634009dcbe1bf, type: 3}
