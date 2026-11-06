@@ -23,6 +23,11 @@ public class InventoryPanelController : MonoBehaviour
 
     private void SetOpen(bool open)
     {
+        if (open)
+            CursorState.Show(this);
+        else
+            CursorState.Hide(this);
+
         contextMenu.Close();
         isOpen = open;
         panel.SetActive(open);

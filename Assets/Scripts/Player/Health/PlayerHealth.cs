@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public int MaxHealth => maxHealth;
     public int CurrentHealth { get; private set; }
     public bool IsFull => CurrentHealth >= maxHealth;
+    public float LastDamageTime { get; private set; } = -100f;
 
     public event Action OnChanged;
 
@@ -25,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         CurrentHealth = Mathf.Max(CurrentHealth - amount, 0);
+        LastDamageTime = Time.time;
         OnChanged?.Invoke();
     }
 

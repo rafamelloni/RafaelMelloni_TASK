@@ -21,6 +21,8 @@ public class StartMenu : MonoBehaviour
 
     private void Start()
     {
+
+        CursorState.Show(this);
         continueButton.gameObject.SetActive(SaveSystem.HasSave);
         cameraInput.enabled = false;
 
@@ -42,6 +44,7 @@ public class StartMenu : MonoBehaviour
 
     private void Close()
     {
+        CursorState.Hide(this);
         input.IsBlocked = false;
         cameraInput.enabled = true;
 

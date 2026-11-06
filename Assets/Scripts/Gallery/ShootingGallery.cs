@@ -13,6 +13,7 @@ public class ShootingGallery : MonoBehaviour
     [SerializeField] private TMP_Text timerText;
     [SerializeField, Min(1f)] private float roundDuration = 90f;
     [SerializeField, Min(0f)] private float resetDelay = 5f;
+    [SerializeField] private SoundEffect winSound = new SoundEffect();
 
     private GalleryTarget[] targets;
     private State state = State.Ready;
@@ -72,6 +73,9 @@ public class ShootingGallery : MonoBehaviour
         state = State.Finished;
         timerText.text = won ? "VICTORY" : "DEFEAT";
         resetTime = Time.time + resetDelay;
+
+        if (won)
+            winSound.Play();
     }
 
     private void ResetGallery()

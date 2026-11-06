@@ -9,8 +9,8 @@ public class GameSaveController : MonoBehaviour
     [SerializeField] private ItemDataBase itemDatabase;
 
     private Inventory inventory;
-    private bool hasPendingSave;
     private bool hasStarted;
+    private bool hasPendingSave;
 
     private void Start()
     {
@@ -26,6 +26,17 @@ public class GameSaveController : MonoBehaviour
         Save();
     }
 
+    private void OnDestroy()
+    {
+        StopSaving();
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (hasStarted)
+            Save();
+    }
+
     public void StartNewGame()
     {
         SaveSystem.Delete();
@@ -38,6 +49,18 @@ public class GameSaveController : MonoBehaviour
         BeginSaving();
     }
 
+    public void SaveNow()
+    {
+        if (hasStarted)
+            Save();
+    }
+
+    public void ClearSave()
+    {
+        StopSaving();
+        SaveSystem.Delete();
+    }
+
     private void BeginSaving()
     {
         hasStarted = true;
@@ -47,28 +70,23 @@ public class GameSaveController : MonoBehaviour
         equipment.OnChanged += RequestSave;
     }
 
-    private void OnDestroy()
+    private void StopSaving()
     {
         if (!hasStarted)
             return;
+
+        hasStarted = false;
+        hasPendingSave = false;
 
         inventory.OnChanged -= RequestSave;
         playerHealth.OnChanged -= RequestSave;
         equipment.OnChanged -= RequestSave;
     }
 
-    private void OnApplicationQuit()
-    {
-        if (hasStarted)
-            Save();
-    }
-
-
-    
-
     private void RequestSave()
     {
-        hasPendingSave = true;
+        if (hasStarted)
+            hasPendingSave = true;
     }
 
     private void Save()
@@ -165,10 +183,5 @@ public class GameSaveController : MonoBehaviour
     private void DeleteSave()
     {
         SaveSystem.Delete();
-    }
-
-    public void SaveNow()
-    {
-        Save();
     }
 }

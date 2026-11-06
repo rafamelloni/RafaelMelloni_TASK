@@ -6,6 +6,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private EquipmentController equipment;
     [SerializeField] private Transform dropPoint;
+    [SerializeField] private SoundEffect dropSound = new SoundEffect();
 
     private ItemUseContext useContext;
 
@@ -40,5 +41,6 @@ public class InventoryController : MonoBehaviour
             Quaternion.identity);
 
         worldItem.Initialize(item.Data, item.Quantity, item.LoadedAmmo);
+        dropSound.Play();
     }
 }

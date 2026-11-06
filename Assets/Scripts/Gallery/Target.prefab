@@ -282,7 +282,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 437f11a7eac96264f8895bba380264df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GalleryTarget
-  respawnDelay: 5
+  hitSound:
+    clips:
+    - {fileID: 8300000, guid: c2514fc1e58e3a1488e13df64e48d9bb, type: 3}
+    volume: 1
+    pitchRange: {x: 0.95, y: 1.05}
 --- !u!1001 &7078993012696927077
 PrefabInstance:
   m_ObjectHideFlags: 0

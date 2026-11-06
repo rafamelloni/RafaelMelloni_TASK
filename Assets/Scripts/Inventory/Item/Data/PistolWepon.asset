@@ -23,3 +23,13 @@ MonoBehaviour:
   magazineSize: 12
   damage: 25
   fireInterval: 0.3
+  equipSound:
+    clips:
+    - {fileID: 8300000, guid: 9e3a22287a96f654cbd8c7effb946274, type: 3}
+    volume: 1
+    pitchRange: {x: 0.95, y: 1.05}
+  unequipSound:
+    clips:
+    - {fileID: 8300000, guid: 9e3a22287a96f654cbd8c7effb946274, type: 3}
+    volume: 1
+    pitchRange: {x: 0.95, y: 1.05}

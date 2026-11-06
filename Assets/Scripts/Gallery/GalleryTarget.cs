@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class GalleryTarget : MonoBehaviour, IDamageable
 {
+    [SerializeField] private SoundEffect hitSound = new SoundEffect();
+
     private ShootingGallery gallery;
     private Rigidbody targetRigidbody;
     private Collider targetCollider;
@@ -35,6 +37,7 @@ public class GalleryTarget : MonoBehaviour, IDamageable
         transform.SetParent(null);
         targetRigidbody.isKinematic = false;
 
+        hitSound.Play();
         gallery.RegisterTargetDown();
     }
 

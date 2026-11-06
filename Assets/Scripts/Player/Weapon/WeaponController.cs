@@ -7,8 +7,12 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] private InputReader input;
     [SerializeField] private EquipmentController equipment;
+    [SerializeField] private InventoryController inventoryController;
     [SerializeField] private PlayerMovement movement;
     [SerializeField] private Animator animator;
+    [SerializeField] private WeaponEffects effects;
+
+    [Header("Aim")]
     [SerializeField] private CinemachineCamera playerCamera;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private LayerMask aimLayers;
@@ -16,14 +20,17 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private float normalFieldOfView = 45f;
     [SerializeField] private float aimFieldOfView = 35f;
     [SerializeField, Min(0f)] private float zoomSpeed = 60f;
-    [SerializeField] private InventoryController inventoryController;
-    [SerializeField] private WeaponEffects effects;
+
+    [Header("Sounds")]
+    [SerializeField] private SoundEffect shootSound = new SoundEffect();
+    [SerializeField] private SoundEffect reloadSound = new SoundEffect();
+    [SerializeField] private SoundEffect noBulletSound = new SoundEffect();
 
     private float nextFireTime;
 
     public bool IsAiming { get; private set; }
-    public float LastDryFireTime { get; private set; } = -100f;
     public Vector3 AimPoint { get; private set; }
+    public float LastDryFireTime { get; private set; } = -100f;
 
     private void Update()
     {
@@ -38,6 +45,7 @@ public class WeaponController : MonoBehaviour
 
         if (IsAiming && input.FirePressed)
             TryFire();
+
         if (input.ReloadPressed)
             TryReload();
     }
@@ -61,6 +69,7 @@ public class WeaponController : MonoBehaviour
         if (weaponItem.LoadedAmmo <= 0)
         {
             LastDryFireTime = Time.time;
+            noBulletSound.Play();
             return;
         }
 
@@ -72,6 +81,7 @@ public class WeaponController : MonoBehaviour
         Vector3 endPoint = FindAimPoint(out RaycastHit hit);
 
         effects.PlayShot(endPoint);
+        shootSound.Play();
 
         if (hit.collider == null)
             return;
@@ -82,16 +92,6 @@ public class WeaponController : MonoBehaviour
 
         if (damageable != null)
             damageable.TakeDamage(weapon.Damage);
-    }
-
-    private void UpdateZoom()
-    {
-        float targetFieldOfView = IsAiming ? aimFieldOfView : normalFieldOfView;
-
-        playerCamera.Lens.FieldOfView = Mathf.MoveTowards(
-            playerCamera.Lens.FieldOfView,
-            targetFieldOfView,
-            zoomSpeed * Time.deltaTime);
     }
 
     private void TryReload()
@@ -109,6 +109,20 @@ public class WeaponController : MonoBehaviour
 
         int loadedFromInventory = inventoryController.Inventory.RemoveItem(weapon.AmmoItem, missingAmmo);
 
+        if (loadedFromInventory <= 0)
+            return;
+
         weaponItem.SetLoadedAmmo(weaponItem.LoadedAmmo + loadedFromInventory);
+        reloadSound.Play();
+    }
+
+    private void UpdateZoom()
+    {
+        float targetFieldOfView = IsAiming ? aimFieldOfView : normalFieldOfView;
+
+        playerCamera.Lens.FieldOfView = Mathf.MoveTowards(
+            playerCamera.Lens.FieldOfView,
+            targetFieldOfView,
+            zoomSpeed * Time.deltaTime);
     }
 }

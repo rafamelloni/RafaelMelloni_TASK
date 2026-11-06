@@ -58,6 +58,11 @@ public class PauseMenu : MonoBehaviour
 
     private void SetPaused(bool paused)
     {
+        if (paused)
+            CursorState.Show(this);
+        else
+            CursorState.Hide(this);
+
         isPaused = paused;
         panel.SetActive(paused);
 

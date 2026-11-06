@@ -19,3 +19,8 @@ MonoBehaviour:
   maxStack: 1
   worldPrefab: {fileID: 1260308303916169329, guid: 82215ea1c1105314695068f91e4a38dd, type: 3}
   healAmount: 25
+  useSound:
+    clips:
+    - {fileID: 8300000, guid: 9e3a22287a96f654cbd8c7effb946274, type: 3}
+    volume: 1
+    pitchRange: {x: 0.95, y: 1.05}

@@ -3,19 +3,30 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class InventorySlotView : MonoBehaviour,
+    IBeginDragHandler,
+    IDragHandler,
+    IEndDragHandler,
+    IDropHandler,
+    IPointerEnterHandler,
+    IPointerExitHandler,
+    IPointerClickHandler
 {
     [SerializeField] private Image iconImage;
     [SerializeField] private TMP_Text quantityText;
+    [SerializeField] private SoundEffect hoverSound = new SoundEffect();
 
-    private InventoryController inventoryController;
     private InventorySlot currentSlot;
     private InventoryDragController dragController;
     private ItemDetailsPanel detailsPanel;
-    private int slotIndex;
     private ItemContextMenu contextMenu;
+    private int slotIndex;
 
-    public void Initialize(int index, InventoryDragController controller, ItemDetailsPanel details, ItemContextMenu menu)
+    public void Initialize(
+        int index,
+        InventoryDragController controller,
+        ItemDetailsPanel details,
+        ItemContextMenu menu)
     {
         slotIndex = index;
         dragController = controller;
@@ -43,10 +54,12 @@ public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        contextMenu.Close();
+        detailsPanel.Clear();
+
         if (currentSlot == null || currentSlot.IsEmpty)
             return;
 
-        contextMenu.Close();
         SetIconAlpha(0.35f);
         dragController.BeginDrag(slotIndex, currentSlot.Item.Data.Icon, eventData.position);
     }
@@ -67,13 +80,6 @@ public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler,
         dragController.EndDrag();
     }
 
-    private void SetIconAlpha(float alpha)
-    {
-        Color color = iconImage.color;
-        color.a = alpha;
-        iconImage.color = color;
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (dragController.IsDragging)
@@ -85,6 +91,7 @@ public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler,
             return;
         }
 
+        hoverSound.Play();
         detailsPanel.Show(currentSlot.Item.Data, (RectTransform)transform);
     }
 
@@ -103,5 +110,12 @@ public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
         detailsPanel.Clear();
         contextMenu.Show(slotIndex, currentSlot.Item.Data, (RectTransform)transform);
+    }
+
+    private void SetIconAlpha(float alpha)
+    {
+        Color color = iconImage.color;
+        color.a = alpha;
+        iconImage.color = color;
     }
 }

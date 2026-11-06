@@ -119,6 +119,11 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 2f980b5f366bd6347bb04d17f052d2fc, type: 2}
   quantity: 1
   loadedAmmo: 12
+  pickUpSound:
+    clips:
+    - {fileID: 8300000, guid: 9f21941b9b90ce04b80ce9349be34850, type: 3}
+    volume: 1
+    pitchRange: {x: 0.95, y: 1.05}
 --- !u!54 &-7005352046662092611
 Rigidbody:
   m_ObjectHideFlags: 0
