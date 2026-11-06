@@ -1,20 +1,20 @@
-using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class GalleryTarget : MonoBehaviour, IDamageable
 {
-    [SerializeField, Min(0f)] private float respawnDelay = 5f;
-
+    private ShootingGallery gallery;
     private Rigidbody targetRigidbody;
     private Collider targetCollider;
     private Transform originalParent;
     private Vector3 originalLocalPosition;
     private Quaternion originalLocalRotation;
-    private bool isDown;
+
+    public bool IsDown { get; private set; }
 
     private void Awake()
     {
+        gallery = GetComponentInParent<ShootingGallery>();
         targetRigidbody = GetComponent<Rigidbody>();
         targetCollider = GetComponent<Collider>();
 
@@ -27,20 +27,21 @@ public class GalleryTarget : MonoBehaviour, IDamageable
 
     public void TakeDamage(int amount)
     {
-        if (isDown)
+        if (IsDown || !gallery.CanShootTargets)
             return;
 
-        isDown = true;
+        IsDown = true;
         targetCollider.enabled = false;
         transform.SetParent(null);
         targetRigidbody.isKinematic = false;
 
-        StartCoroutine(RespawnAfterDelay());
+        gallery.RegisterTargetDown();
     }
 
-    private IEnumerator RespawnAfterDelay()
+    public void ResetTarget()
     {
-        yield return new WaitForSeconds(respawnDelay);
+        if (!IsDown)
+            return;
 
         targetRigidbody.linearVelocity = Vector3.zero;
         targetRigidbody.angularVelocity = Vector3.zero;
@@ -51,6 +52,6 @@ public class GalleryTarget : MonoBehaviour, IDamageable
         transform.localRotation = originalLocalRotation;
 
         targetCollider.enabled = true;
-        isDown = false;
+        IsDown = false;
     }
 }

@@ -22,6 +22,7 @@ public class WeaponController : MonoBehaviour
     private float nextFireTime;
 
     public bool IsAiming { get; private set; }
+    public float LastDryFireTime { get; private set; } = -100f;
     public Vector3 AimPoint { get; private set; }
 
     private void Update()
@@ -58,7 +59,10 @@ public class WeaponController : MonoBehaviour
         ItemInstance weaponItem = equipment.EquippedItem;
 
         if (weaponItem.LoadedAmmo <= 0)
+        {
+            LastDryFireTime = Time.time;
             return;
+        }
 
         WeaponData weapon = equipment.EquippedWeapon;
 
