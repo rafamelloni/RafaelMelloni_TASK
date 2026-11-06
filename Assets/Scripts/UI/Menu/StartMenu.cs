@@ -48,8 +48,7 @@ public class StartMenu : MonoBehaviour
         input.IsBlocked = false;
         cameraInput.enabled = true;
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        
 
         gameObject.SetActive(false);
     }

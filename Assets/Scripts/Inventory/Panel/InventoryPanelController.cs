@@ -35,8 +35,7 @@ public class InventoryPanelController : MonoBehaviour
         input.IsGameplayEnabled = !open;
         cameraInput.enabled = !open;
 
-        Cursor.visible = open;
-        Cursor.lockState = open ? CursorLockMode.None : CursorLockMode.Locked;
+        
     }
 
   

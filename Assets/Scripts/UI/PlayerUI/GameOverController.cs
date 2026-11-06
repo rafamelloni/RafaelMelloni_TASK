@@ -71,8 +71,8 @@ public class GameOverController : MonoBehaviour
         cameraInput.enabled = false;
         Time.timeScale = 0f;
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        
+
 
         panel.SetActive(true);
     }

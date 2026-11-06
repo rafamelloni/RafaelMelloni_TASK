@@ -70,8 +70,7 @@ public class PauseMenu : MonoBehaviour
         input.IsBlocked = paused;
         cameraInput.enabled = !paused;
 
-        Cursor.visible = paused;
-        Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.Locked;
+        
     }
 
     private void GoToMainMenu()
