@@ -203,4 +203,47 @@ public class Inventory
 
         return -1;
     }
+
+    public int CountItem(ItemData data)
+    {
+        int total = 0;
+
+        foreach (InventorySlot slot in slots)
+        {
+            if (!slot.IsEmpty && slot.Item.Data == data)
+                total += slot.Item.Quantity;
+        }
+
+        return total;
+    }
+
+    public int RemoveItem(ItemData data, int amount)
+    {
+        int remaining = amount;
+
+        foreach (InventorySlot slot in slots)
+        {
+            if (remaining == 0)
+                break;
+
+            if (slot.IsEmpty || slot.Item.Data != data)
+                continue;
+
+            int removedFromSlot = Mathf.Min(remaining, slot.Item.Quantity);
+
+            slot.Item.RemoveQuantity(removedFromSlot);
+
+            if (slot.Item.Quantity == 0)
+                slot.Clear();
+
+            remaining -= removedFromSlot;
+        }
+
+        int removed = amount - remaining;
+
+        if (removed > 0)
+            OnChanged?.Invoke();
+
+        return removed;
+    }
 }

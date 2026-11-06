@@ -8,6 +8,7 @@ public class ItemContextMenu : MonoBehaviour
     [SerializeField] private Button useButton;
     [SerializeField] private TMP_Text useButtonText;
     [SerializeField] private Button dropButton;
+    [SerializeField] private float spacing = 24f;
 
     private int slotIndex;
 
@@ -28,7 +29,7 @@ public class ItemContextMenu : MonoBehaviour
             Close();
     }
 
-    public void Show(int index, ItemData item, Vector2 position)
+    public void Show(int index, ItemData item, RectTransform slot)
     {
         slotIndex = index;
 
@@ -41,7 +42,9 @@ public class ItemContextMenu : MonoBehaviour
             useButtonText.text = actionName;
 
         gameObject.SetActive(true);
-        transform.position = position;
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(RectTransform);
+        UIPositioning.PlaceLeftOf(RectTransform, slot, spacing);
     }
 
     public void Close()

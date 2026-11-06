@@ -26,7 +26,7 @@ public class ItemDetailsPanel : MonoBehaviour
         descriptionText.text = item.Description;
 
         gameObject.SetActive(true);
-        PositionNextTo(slot);
+        UIPositioning.PlaceLeftOf(RectTransform, slot, spacing);
     }
 
     public void Clear()

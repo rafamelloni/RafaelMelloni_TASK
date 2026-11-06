@@ -115,4 +115,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WorldItem
   item: {fileID: 11400000, guid: 2f980b5f366bd6347bb04d17f052d2fc, type: 2}
   quantity: 1
-  loadedAmmo: 0
+  loadedAmmo: 12

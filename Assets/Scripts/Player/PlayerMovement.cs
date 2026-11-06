@@ -22,7 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private Vector3 horizontalVelocity;
     private float verticalVelocity;
-
+    public bool IsAiming { get; set; }
+    public Vector3 AimPoint { get; set; }
     public float CurrentSpeed => horizontalVelocity.magnitude;
 
     private void Awake()
@@ -32,10 +33,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector3 moveDirection = GetCameraRelativeDirection();
+        Vector3 moveDirection = IsAiming ? Vector3.zero : GetCameraRelativeDirection();
 
         UpdateHorizontalVelocity(moveDirection);
-        RotateTowards(moveDirection);
+        RotateTowards(IsAiming ? GetAimDirection() : moveDirection);
         UpdateVerticalVelocity();
 
         Vector3 velocity = horizontalVelocity + Vector3.up * verticalVelocity;
@@ -80,5 +81,12 @@ public class PlayerMovement : MonoBehaviour
             verticalVelocity = groundedVerticalVelocity;
 
         verticalVelocity += gravity * Time.deltaTime;
+    }
+
+    private Vector3 GetAimDirection()
+    {
+        Vector3 direction = Vector3.ProjectOnPlane(AimPoint - transform.position, Vector3.up);
+
+        return direction.sqrMagnitude < 1f ? transform.forward : direction.normalized;
     }
 }

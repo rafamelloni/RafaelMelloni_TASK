@@ -102,6 +102,6 @@ public class InventorySlotView : MonoBehaviour, IBeginDragHandler, IDragHandler,
             return;
 
         detailsPanel.Clear();
-        contextMenu.Show(slotIndex, currentSlot.Item.Data, eventData.position);
+        contextMenu.Show(slotIndex, currentSlot.Item.Data, (RectTransform)transform);
     }
 }

@@ -11,12 +11,14 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField, Min(0.01f)] private float rayRadius = 0.15f;
 
     public Inventory Inventory => inventoryController.Inventory;
+    public bool HasTarget { get; private set; }
 
     private void Update()
     {
         IInteractable target = FindLookedAtInteractable();
+        HasTarget = target != null;
 
-        if (target != null && input.InteractPressed)
+        if (HasTarget && input.InteractPressed)
             target.Interact(this);
     }
 

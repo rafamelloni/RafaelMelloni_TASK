@@ -19,5 +19,7 @@ MonoBehaviour:
   maxStack: 1
   worldPrefab: {fileID: 7748383435403295967, guid: 911b022c7a8ebf1448f4d2d9a0359795, type: 3}
   equippedPrefab: {fileID: 1694449805434718, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+  ammoItem: {fileID: 11400000, guid: d1c1067a916de31458ab9d60977c38de, type: 2}
   magazineSize: 12
   damage: 25
+  fireInterval: 0.3
