@@ -1,10 +1,11 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField, Min(1)] private int maxHealth = 100;
 
+    public int MaxHealth => maxHealth;
     public int CurrentHealth { get; private set; }
     public bool IsFull => CurrentHealth >= maxHealth;
 
@@ -14,11 +15,7 @@ public class PlayerHealth : MonoBehaviour
     {
         CurrentHealth = maxHealth;
     }
-    public void SetHealth(int value)
-    {
-        CurrentHealth = Mathf.Clamp(value, 0, maxHealth);
-        OnChanged?.Invoke();
-    }
+
     public void Heal(int amount)
     {
         CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);
@@ -28,6 +25,12 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         CurrentHealth = Mathf.Max(CurrentHealth - amount, 0);
+        OnChanged?.Invoke();
+    }
+
+    public void SetHealth(int value)
+    {
+        CurrentHealth = Mathf.Clamp(value, 0, maxHealth);
         OnChanged?.Invoke();
     }
 }
