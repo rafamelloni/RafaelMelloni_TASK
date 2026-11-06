@@ -8867,7 +8867,7 @@ GameObject:
   - component: {fileID: 656116524}
   - component: {fileID: 656116523}
   m_Layer: 0
-  m_Name: Ambience
+  m_Name: AmbienceSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9044,21 +9044,21 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'SHOOTING GALLERY
 
-    
+
 
     HOW TO PLAY
 
-    Shoot any target to start
-    the clock.
+    Shoot any target to start the
+    clock.
 
     Knock down every target before time runs out.
 
-    Miss, and
-    the back wall hits back.
+    Miss, and the
+    back wall hits back.
 
     Grab ammo and medkits around the stand.
 
-    
+
 
     CONTROLS
 
@@ -9083,21 +9083,21 @@ MonoBehaviour:
     Esc
     - Pause
 
-    
+
 
     INVENTORY
 
     Drag items to move or swap them.
 
-    Drop
-    matching items together to stack them.
+    Drop matching
+    items together to stack them.
 
     Hover an item to see its details.
 
     Right-click
     an item to use, equip or drop it.
 
-    
+
 
     Your progress is saved automatically.'
   m_isRightToLeft: 0
@@ -10338,7 +10338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a4f002ac37c39ab44a44803c0c62f130, type: 3}
       propertyPath: m_Name
-      value: X Bot
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a4f002ac37c39ab44a44803c0c62f130, type: 3}
       propertyPath: m_Layer
@@ -11211,6 +11211,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918127582}
   m_CullTransparentMesh: 1
+--- !u!1 &929974948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 929974949}
+  m_Layer: 0
+  m_Name: Volumes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &929974949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929974948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1793.3466, y: 0.00001, z: 903.7188}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1821361033}
+  - {fileID: 1748432183}
+  - {fileID: 1601424841}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &964104826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3145725735254329129, guid: 8bbdd2ffd9ace544cb9cf4bf827ae0a4, type: 3}
@@ -11332,21 +11366,21 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'SHOOTING GALLERY
 
-    
+
 
     HOW TO PLAY
 
-    Shoot any target to start
-    the clock.
+    Shoot any target to start the
+    clock.
 
     Knock down every target before time runs out.
 
-    Miss, and
-    the back wall hits back.
+    Miss, and the
+    back wall hits back.
 
     Grab ammo and medkits around the stand.
 
-    
+
 
 
 '
@@ -12964,24 +12998,23 @@ MonoBehaviour:
 
     Esc - Pause
 
-    
+
 
     INVENTORY
 
-    Drag items to move or
-    swap them.
+    Drag items to move or swap them.
 
-    Drop matching items together to stack them.
+    Drop
+    matching items together to stack them.
 
-    Hover an item
-    to see its details.
+    Hover an item to see its details.
 
-    Right-click an item to use, equip or drop it.
+    Right-click
+    an item to use, equip or drop it.
 
-    
 
-    Your
-    progress is saved automatically.'
+
+    Your progress is saved automatically.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14658,12 +14691,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601424839}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 234.9629, y: 967.62067, z: -831.00714}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1558.3837, y: 967.62067, z: -1734.726}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 929974949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1613196869
 PrefabInstance:
@@ -15640,12 +15673,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748432181}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 234.9629, y: 967.62067, z: -831.00714}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1558.3837, y: 967.62067, z: -1734.726}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 929974949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1761468804 stripped
 Transform:
@@ -15838,12 +15871,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821361031}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 234.9629, y: 967.62067, z: -831.00714}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1558.3837, y: 967.62067, z: -1734.726}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 929974949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1846075536
 GameObject:
@@ -17384,7 +17417,5 @@ SceneRoots:
   - {fileID: 481400497}
   - {fileID: 1912243424}
   - {fileID: 1410694194}
-  - {fileID: 1821361033}
-  - {fileID: 1748432183}
-  - {fileID: 1601424841}
+  - {fileID: 929974949}
   - {fileID: 656116524}
