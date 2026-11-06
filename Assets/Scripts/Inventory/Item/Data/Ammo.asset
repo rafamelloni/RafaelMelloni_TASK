@@ -15,6 +15,6 @@ MonoBehaviour:
   id: ammo
   displayName: Pistol Ammo
   description: Ammo for Pistol
-  icon: {fileID: 21300000, guid: 40250185cfcd2604ebc634009dcbe1bf, type: 3}
+  icon: {fileID: 21300000, guid: eca59c5ea44a1284b9d6fac0a9a5b5fd, type: 3}
   maxStack: 30
   worldPrefab: {fileID: 5909476567760102350, guid: d25e7bf484cc2ef4c96198cc5aae8d2c, type: 3}

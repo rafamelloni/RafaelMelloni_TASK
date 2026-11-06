@@ -15,7 +15,7 @@ MonoBehaviour:
   id: medkit
   displayName: MedKit
   description: 
-  icon: {fileID: 21300000, guid: 96abe9144609545419e18f668c98e5b3, type: 3}
+  icon: {fileID: 21300000, guid: b3e30a88d9edabf41918b9cbe50c2c78, type: 3}
   maxStack: 1
   worldPrefab: {fileID: 1260308303916169329, guid: 82215ea1c1105314695068f91e4a38dd, type: 3}
   healAmount: 25
