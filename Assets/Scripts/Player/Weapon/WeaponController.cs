@@ -17,6 +17,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private float aimFieldOfView = 35f;
     [SerializeField, Min(0f)] private float zoomSpeed = 60f;
     [SerializeField] private InventoryController inventoryController;
+    [SerializeField] private WeaponEffects effects;
 
     private float nextFireTime;
 
@@ -51,11 +52,8 @@ public class WeaponController : MonoBehaviour
 
     private void TryFire()
     {
-
         if (Time.time < nextFireTime)
-        {
             return;
-        }
 
         ItemInstance weaponItem = equipment.EquippedItem;
 
@@ -67,11 +65,14 @@ public class WeaponController : MonoBehaviour
         weaponItem.SetLoadedAmmo(weaponItem.LoadedAmmo - 1);
         nextFireTime = Time.time + weapon.FireInterval;
 
-        FindAimPoint(out RaycastHit hit);
+        Vector3 endPoint = FindAimPoint(out RaycastHit hit);
 
+        effects.PlayShot(endPoint);
 
         if (hit.collider == null)
             return;
+
+        effects.PlayImpact(hit.point, hit.normal);
 
         IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
 
