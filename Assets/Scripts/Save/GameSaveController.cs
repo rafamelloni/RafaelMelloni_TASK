@@ -10,16 +10,11 @@ public class GameSaveController : MonoBehaviour
 
     private Inventory inventory;
     private bool hasPendingSave;
+    private bool hasStarted;
 
     private void Start()
     {
         inventory = inventoryController.Inventory;
-
-        Load();
-
-        inventory.OnChanged += RequestSave;
-        playerHealth.OnChanged += RequestSave;
-        equipment.OnChanged += RequestSave;
     }
 
     private void LateUpdate()
@@ -31,19 +26,45 @@ public class GameSaveController : MonoBehaviour
         Save();
     }
 
+    public void StartNewGame()
+    {
+        SaveSystem.Delete();
+        BeginSaving();
+    }
+
+    public void ContinueGame()
+    {
+        Load();
+        BeginSaving();
+    }
+
+    private void BeginSaving()
+    {
+        hasStarted = true;
+
+        inventory.OnChanged += RequestSave;
+        playerHealth.OnChanged += RequestSave;
+        equipment.OnChanged += RequestSave;
+    }
+
     private void OnDestroy()
     {
-        if (inventory != null)
-            inventory.OnChanged -= RequestSave;
+        if (!hasStarted)
+            return;
 
+        inventory.OnChanged -= RequestSave;
         playerHealth.OnChanged -= RequestSave;
         equipment.OnChanged -= RequestSave;
     }
 
     private void OnApplicationQuit()
     {
-        Save();
+        if (hasStarted)
+            Save();
     }
+
+
+    
 
     private void RequestSave()
     {
@@ -144,5 +165,10 @@ public class GameSaveController : MonoBehaviour
     private void DeleteSave()
     {
         SaveSystem.Delete();
+    }
+
+    public void SaveNow()
+    {
+        Save();
     }
 }

@@ -15,7 +15,7 @@ public class WeaponData : ItemData
     public int Damage => damage;
     public float FireInterval => fireInterval;
 
-    public override string UseActionName => "Equipar";
+    public override string UseActionName => "Equip";
 
     public override bool TryUse(ItemInstance instance, ItemUseContext context)
     {

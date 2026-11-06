@@ -7,6 +7,7 @@ public class SaveSystem
     private const string FileName = "save.json";
 
     private static string SavePath => Path.Combine(Application.persistentDataPath, FileName);
+    public static bool HasSave => File.Exists(SavePath);
 
     public static void Save(SaveData data)
     {

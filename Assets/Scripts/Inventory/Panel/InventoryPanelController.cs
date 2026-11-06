@@ -9,7 +9,7 @@ public class InventoryPanelController : MonoBehaviour
     [SerializeField] private InventoryDragController dragController;
     [SerializeField] private ItemContextMenu contextMenu;
     private bool isOpen;
-
+    public bool IsOpen => isOpen;
     private void Start()
     {
         SetOpen(false);
@@ -32,5 +32,13 @@ public class InventoryPanelController : MonoBehaviour
 
         Cursor.visible = open;
         Cursor.lockState = open ? CursorLockMode.None : CursorLockMode.Locked;
+    }
+
+  
+
+    public void Close()
+    {
+        if (!dragController.IsDragging)
+            SetOpen(false);
     }
 }
