@@ -9967,7 +9967,6 @@ MonoBehaviour:
   nameText: {fileID: 2035230158}
   descriptionText: {fileID: 427883035}
   spacing: 200
-  yHeight: 50
 --- !u!114 &758386742
 MonoBehaviour:
   m_ObjectHideFlags: 0

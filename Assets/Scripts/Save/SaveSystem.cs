@@ -1,12 +1,13 @@
-using System.IO;
 using System;
+using System.IO;
 using UnityEngine;
 
-public class SaveSystem 
+public static class SaveSystem
 {
     private const string FileName = "save.json";
 
     private static string SavePath => Path.Combine(Application.persistentDataPath, FileName);
+
     public static bool HasSave => File.Exists(SavePath);
 
     public static void Save(SaveData data)
@@ -18,7 +19,7 @@ public class SaveSystem
         }
         catch (Exception exception)
         {
-            Debug.LogError($"No se pudo guardar la partida: {exception.Message}");
+            Debug.LogError($"Could not save the game: {exception.Message}");
         }
     }
 
@@ -37,7 +38,7 @@ public class SaveSystem
         }
         catch (Exception exception)
         {
-            Debug.LogError($"No se pudo cargar la partida: {exception.Message}");
+            Debug.LogError($"Could not load the game: {exception.Message}");
             return false;
         }
     }

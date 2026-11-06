@@ -2,7 +2,6 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
-[DefaultExecutionOrder(100)]
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] private GameSaveController saveController;
@@ -26,8 +25,7 @@ public class StartMenu : MonoBehaviour
         continueButton.gameObject.SetActive(SaveSystem.HasSave);
         cameraInput.enabled = false;
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        
     }
 
     private void ContinueGame()
